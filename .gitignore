@@ -1,0 +1,59 @@
+# ─── Dependencies ────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Build output ────────────────────────────────────
+dist/
+build/
+*.tsbuildinfo
+.expo/
+.expo-shared/
+web-build/
+
+# ─── Env / secrets ───────────────────────────────────
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ─── Logs ────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Test coverage ───────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── Prisma ──────────────────────────────────────────
+# Migrations are committed; generated client is not.
+backend/node_modules/.prisma/
+
+# ─── OS / Editor ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Native ──────────────────────────────────────────
+*.orig.*
+ios/Pods/
+android/.gradle/
+android/build/
+android/app/build/
+
+# ─── Docker ──────────────────────────────────────────
+*.pid
+
+# ─── Misc ────────────────────────────────────────────
+.cache/
+.turbo/
+.next/
+
+# ─── Claude Code session metadata ────────────────────
+.claude/

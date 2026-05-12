@@ -1,0 +1,18 @@
+// Phase 0: minimal placeholder schema only — used to confirm DB connectivity.
+// Phase 1 will replace this with the full user / auth / role schema.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model HealthCheck {
+  id        Int      @id @default(autoincrement())
+  checkedAt DateTime @default(now())
+
+  @@map("health_checks")
+}

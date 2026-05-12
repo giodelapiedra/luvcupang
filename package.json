@@ -1,0 +1,25 @@
+{
+  "name": "cupang-love-connect",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cupang Love Connect — barangay digital governance app (monorepo)",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "workspaces": [
+    "backend",
+    "apps/mobile",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:mobile": "npm run start --workspace=apps/mobile",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "type-check": "npm run type-check --workspaces --if-present",
+    "verify:phase0": "bash docs/verify-phase0.sh"
+  }
+}
