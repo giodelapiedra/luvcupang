@@ -70,7 +70,7 @@ export default function Home() {
         </SafeAreaView>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
         {/* ID banner — pulled up over header edge */}
         <View className="px-4" style={{ marginTop: -8 }}>
           <IDBanner verified={user.verified} fullName={user.name} />

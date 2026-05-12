@@ -23,7 +23,7 @@ export default function Services() {
         </SafeAreaView>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 120 }}>
         <View className="flex-row flex-wrap justify-between gap-y-3">
           {SERVICES.map((s) => (
             <ServiceCard

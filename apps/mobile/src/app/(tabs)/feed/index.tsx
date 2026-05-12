@@ -37,7 +37,7 @@ export default function Feed() {
         </SafeAreaView>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 120 }}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}

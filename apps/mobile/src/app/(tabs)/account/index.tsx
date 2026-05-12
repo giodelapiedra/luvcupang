@@ -81,7 +81,7 @@ export default function Profile() {
         </SafeAreaView>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 120 }}>
         {/* Avatar block */}
         <View className="items-center pb-5">
           <LinearGradient
