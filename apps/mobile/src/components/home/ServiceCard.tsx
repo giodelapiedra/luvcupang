@@ -1,4 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import type { ServiceItem } from '@/constants/services';
 
 interface ServiceCardProps {
@@ -6,27 +7,25 @@ interface ServiceCardProps {
   onPress: () => void;
 }
 
-// One cell in the 4-column home grid. Tap → Coming Soon screen.
+// 4-up flat card: white background, single colored icon tile, clean label.
+// No emoji, no gradient — eGov-style.
 export function ServiceCard({ service, onPress }: ServiceCardProps) {
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={service.label}
       onPress={onPress}
-      className="items-center rounded-2xl border p-3 active:opacity-80"
-      style={{ backgroundColor: service.color, borderColor: service.border, width: '23%' }}
+      className="items-center rounded-2xl border border-slate-100 bg-white px-2 py-3 active:opacity-80"
+      style={{ width: '23%' }}
     >
       <View
-        className="h-10 w-10 items-center justify-center rounded-xl"
-        style={{ backgroundColor: service.iconBg }}
+        className="h-11 w-11 items-center justify-center rounded-xl"
+        style={{ backgroundColor: service.accent }}
       >
-        <Text className="text-lg">{service.icon}</Text>
+        <Ionicons name={service.iconName} size={22} color="#FFFFFF" />
       </View>
-      <Text className="mt-2 text-center text-[11px] font-bold text-slate-900" numberOfLines={1}>
+      <Text className="mt-2 text-center text-[12px] font-semibold text-slate-800" numberOfLines={1}>
         {service.label}
-      </Text>
-      <Text className="text-[9px] font-medium uppercase tracking-wider text-slate-500">
-        Coming Soon
       </Text>
     </Pressable>
   );

@@ -1,21 +1,26 @@
+import type { ComponentProps } from 'react';
+import type { Ionicons } from '@expo/vector-icons';
+
+type IoniconName = ComponentProps<typeof Ionicons>['name'];
+
 export type ServiceItem = {
   id: string;
-  icon: string;
+  iconName: IoniconName;
   label: string;
-  color: string;
-  border: string;
-  iconBg: string;
+  accent: string; // icon container color
 };
 
+// Flat icons via Ionicons (no emoji). Accent is the brand color for the
+// icon container — single solid color, no gradient.
 export const SERVICES: ServiceItem[] = [
-  { id: 'assistance', icon: '🤝', label: 'Assistance', color: '#EFF6FF', border: '#BFDBFE', iconBg: '#2563EB' },
-  { id: 'clearance', icon: '📋', label: 'Clearance', color: '#F0FDF4', border: '#BBF7D0', iconBg: '#16A34A' },
-  { id: 'ireport', icon: '📍', label: 'iReport', color: '#FFFBEB', border: '#FDE68A', iconBg: '#D97706' },
-  { id: 'elupon', icon: '⚖️', label: 'E-Lupon', color: '#FDF4FF', border: '#E9D5FF', iconBg: '#9333EA' },
-  { id: 'booking', icon: '🏛️', label: 'Facility', color: '#FFF7ED', border: '#FED7AA', iconBg: '#EA580C' },
-  { id: 'scholarship', icon: '🎓', label: 'Scholarship', color: '#F0FDFA', border: '#99F6E4', iconBg: '#0D9488' },
-  { id: 'medical', icon: '🏥', label: 'Medical', color: '#FFF1F2', border: '#FECDD3', iconBg: '#E11D48' },
-  { id: 'jobs', icon: '💼', label: 'Jobs', color: '#F8FAFC', border: '#CBD5E1', iconBg: '#475569' },
+  { id: 'assistance', iconName: 'hand-left-outline', label: 'Assistance', accent: '#2563EB' },
+  { id: 'clearance', iconName: 'document-text-outline', label: 'Clearance', accent: '#16A34A' },
+  { id: 'ireport', iconName: 'megaphone-outline', label: 'iReport', accent: '#D97706' },
+  { id: 'elupon', iconName: 'shield-checkmark-outline', label: 'E-Lupon', accent: '#9333EA' },
+  { id: 'booking', iconName: 'business-outline', label: 'Facility', accent: '#EA580C' },
+  { id: 'scholarship', iconName: 'school-outline', label: 'Scholarship', accent: '#0D9488' },
+  { id: 'medical', iconName: 'medkit-outline', label: 'Medical', accent: '#E11D48' },
+  { id: 'jobs', iconName: 'briefcase-outline', label: 'Jobs', accent: '#475569' },
 ];
 
 export const SERVICE_BY_LABEL: Record<string, ServiceItem> = SERVICES.reduce(

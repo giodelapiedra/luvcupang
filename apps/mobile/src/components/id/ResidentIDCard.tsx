@@ -1,22 +1,20 @@
 import { useMemo } from 'react';
 import { Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { User } from '@/types/user.types';
-import { COLORS } from '@/constants/colors';
 import { generateIdNumber } from '@/utils/format';
 
 interface ResidentIDCardProps {
   user: User;
 }
 
-// 7x7 QR-style dot grid. Generated once via useMemo so it doesn't flicker
-// on every parent re-render.
 function QRDotGrid({ size = 64, cells = 7 }: { size?: number; cells?: number }) {
   const dots = useMemo(
     () =>
       Array.from({ length: cells * cells }, (_, i) => ({
         key: i,
-        opacity: 0.25 + Math.random() * 0.75,
+        opacity: 0.35 + Math.random() * 0.65,
       })),
     [cells]
   );
@@ -38,14 +36,11 @@ function QRDotGrid({ size = 64, cells = 7 }: { size?: number; cells?: number }) 
 }
 
 export function ResidentIDCard({ user }: ResidentIDCardProps) {
-  // ID number is generated on the client for the baseline. Phase 1 will replace
-  // this with the backend-issued ID from /users/me.
   const idNumber = useMemo(() => user.id ?? generateIdNumber(), [user.id]);
 
   const verified = user.verified;
-  const statusLabel = verified ? '✓ VERIFIED RESIDENT' : '⏳ PENDING VERIFICATION';
-  const statusBg = verified ? 'rgba(22,163,74,0.18)' : 'rgba(217,119,6,0.20)';
-  const statusBorder = verified ? '#22C55E' : '#F59E0B';
+  const statusLabel = verified ? 'VERIFIED RESIDENT' : 'PENDING VERIFICATION';
+  const statusBg = verified ? 'rgba(34,197,94,0.18)' : 'rgba(245,158,11,0.20)';
 
   return (
     <LinearGradient
@@ -54,15 +49,15 @@ export function ResidentIDCard({ user }: ResidentIDCardProps) {
       end={{ x: 1, y: 1 }}
       style={{
         borderRadius: 22,
-        padding: 18,
+        padding: 20,
         shadowColor: '#0A1628',
         shadowOpacity: 0.35,
-        shadowRadius: 24,
-        shadowOffset: { width: 0, height: 12 },
-        elevation: 8,
+        shadowRadius: 20,
+        shadowOffset: { width: 0, height: 10 },
+        elevation: 6,
       }}
     >
-      {/* HEADER ROW */}
+      {/* Header */}
       <View className="flex-row items-center gap-3">
         <View className="h-10 w-10 items-center justify-center rounded-xl bg-white/15">
           <Text className="font-display text-base font-extrabold text-white">LC</Text>
@@ -75,7 +70,7 @@ export function ResidentIDCard({ user }: ResidentIDCardProps) {
         </View>
       </View>
 
-      {/* BODY ROW */}
+      {/* Body */}
       <View className="mt-5 flex-row items-center gap-4">
         <LinearGradient
           colors={['#3B82F6', '#1A3C8F']}
@@ -98,9 +93,14 @@ export function ResidentIDCard({ user }: ResidentIDCardProps) {
           <Text className="text-[11px] text-white/80">{user.purok}</Text>
           <Text className="text-[11px] text-white/70">{user.phone}</Text>
           <View
-            className="mt-1.5 self-start rounded-full border px-2 py-0.5"
-            style={{ backgroundColor: statusBg, borderColor: statusBorder }}
+            className="mt-1.5 flex-row items-center gap-1 self-start rounded-full border border-white/30 px-2 py-0.5"
+            style={{ backgroundColor: statusBg }}
           >
+            <Ionicons
+              name={verified ? 'checkmark-circle' : 'time-outline'}
+              size={10}
+              color="#FFFFFF"
+            />
             <Text className="text-[9px] font-extrabold tracking-wider text-white">
               {statusLabel}
             </Text>
@@ -108,7 +108,7 @@ export function ResidentIDCard({ user }: ResidentIDCardProps) {
         </View>
       </View>
 
-      {/* QR ROW */}
+      {/* QR row */}
       <View
         className="mt-5 flex-row items-center gap-3 rounded-xl p-3"
         style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
@@ -122,16 +122,9 @@ export function ResidentIDCard({ user }: ResidentIDCardProps) {
         </View>
       </View>
 
-      {/* FOOTER */}
       <Text className="mt-4 text-center text-[9px] text-white/50">
         This certifies that the above-named is a registered resident of Brgy. Cupang.
       </Text>
-
-      {/* corner badges */}
-      <View
-        className="absolute right-3 top-3 h-3 w-3 rounded-full"
-        style={{ backgroundColor: verified ? COLORS.GREEN : COLORS.AMBER }}
-      />
     </LinearGradient>
   );
 }

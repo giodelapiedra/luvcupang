@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -104,15 +103,11 @@ export default function Register() {
   };
 
   return (
-    <View className="flex-1 bg-[#F8FAFF]">
+    <View className="flex-1 bg-[#F8FAFC]">
       <StatusBar style="light" />
 
-      {/* Header */}
-      <LinearGradient
-        colors={['#0A1628', '#1A3C8F']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
+      {/* Flat brand header */}
+      <View style={{ backgroundColor: COLORS.BRAND }}>
         <SafeAreaView edges={['top']}>
           <View className="px-4 pb-5 pt-2">
             <View className="flex-row items-center justify-between">
@@ -124,16 +119,16 @@ export default function Register() {
               >
                 <Ionicons name="chevron-back" size={22} color={COLORS.WHITE} />
               </Pressable>
-              <View className="flex-row gap-1.5">
+              <View className="flex-row items-center gap-1.5">
                 <View
                   className="h-2 rounded-full"
-                  style={{ width: step >= 1 ? 24 : 8, backgroundColor: 'white' }}
+                  style={{ width: step >= 1 ? 24 : 8, backgroundColor: '#FFFFFF' }}
                 />
                 <View
                   className="h-2 rounded-full"
                   style={{
                     width: step >= 2 ? 24 : 8,
-                    backgroundColor: step >= 2 ? 'white' : 'rgba(255,255,255,0.35)',
+                    backgroundColor: step >= 2 ? '#FFFFFF' : 'rgba(255,255,255,0.35)',
                   }}
                 />
               </View>
@@ -154,7 +149,7 @@ export default function Register() {
             />
           </View>
         </SafeAreaView>
-      </LinearGradient>
+      </View>
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -164,10 +159,19 @@ export default function Register() {
           contentContainerStyle={{ padding: 20, paddingBottom: 40 }}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Intro box */}
-          <View className="mb-5 flex-row items-center gap-3 rounded-2xl bg-[#EFF6FF] p-3.5">
-            <Text className="text-xl">{step === 1 ? '👤' : '🏠'}</Text>
-            <Text className="flex-1 text-[12px] leading-4 text-[#1D4ED8]">
+          {/* Intro tile (flat, Ionicon) */}
+          <View className="mb-5 flex-row items-center gap-3 rounded-2xl border border-slate-100 bg-white p-3.5">
+            <View
+              className="h-10 w-10 items-center justify-center rounded-xl"
+              style={{ backgroundColor: '#EFF6FF' }}
+            >
+              <Ionicons
+                name={step === 1 ? 'person-outline' : 'home-outline'}
+                size={20}
+                color={COLORS.BRAND}
+              />
+            </View>
+            <Text className="flex-1 text-[12px] leading-4 text-slate-600">
               {step === 1
                 ? 'Tell us your name and mobile number. We use this to set up your account.'
                 : 'Where in Brgy. Cupang do you live? These details appear on your Digital ID.'}
@@ -208,7 +212,7 @@ export default function Register() {
                 maxLength={11}
               />
               <View className="mt-3">
-                <Button label="Continue →" onPress={onContinue} />
+                <Button label="Continue" onPress={onContinue} />
               </View>
             </View>
           ) : (
@@ -229,13 +233,17 @@ export default function Register() {
                   className="h-12 flex-row items-center justify-between rounded-2xl border-[1.5px] bg-white px-4"
                   style={{ borderColor: errors.birthday ? COLORS.RED : COLORS.GRAY_200 }}
                 >
-                  <Text className={`text-base ${data.birthday ? 'text-slate-900' : 'text-slate-400'}`}>
+                  <Text
+                    className={`text-base ${data.birthday ? 'text-slate-900' : 'text-slate-400'}`}
+                  >
                     {data.birthday || 'Select your birthday'}
                   </Text>
                   <Ionicons name="calendar-outline" size={18} color={COLORS.GRAY_400} />
                 </Pressable>
                 {errors.birthday ? (
-                  <Text className="ml-1 mt-1 text-xs font-medium text-red-600">{errors.birthday}</Text>
+                  <Text className="ml-1 mt-1 text-xs font-medium text-red-600">
+                    {errors.birthday}
+                  </Text>
                 ) : null}
                 {showDatePicker ? (
                   <DateTimePicker
@@ -264,7 +272,7 @@ export default function Register() {
               </Text>
 
               <View className="mt-3">
-                <Button label="Create My Account ✓" onPress={onSubmit} />
+                <Button label="Create My Account" onPress={onSubmit} />
               </View>
             </View>
           )}

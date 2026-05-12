@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FEED, type FeedCategory } from '@/constants/feed';
 import { FeedCard } from '@/components/home';
+import { COLORS } from '@/constants/colors';
 
 type Tab = 'all' | FeedCategory;
 
@@ -23,18 +23,19 @@ export default function Feed() {
   );
 
   return (
-    <View className="flex-1 bg-[#F8FAFF]">
+    <View className="flex-1 bg-[#F8FAFC]">
       <StatusBar style="light" />
-      <LinearGradient colors={['#0A1628', '#1A3C8F']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+
+      <View style={{ backgroundColor: COLORS.BRAND }}>
         <SafeAreaView edges={['top']}>
-          <View className="px-4 pb-5 pt-4">
+          <View className="px-4 pb-5 pt-3">
             <Text className="font-display text-2xl font-extrabold text-white">Cupang Feed</Text>
             <Text className="mt-1 text-xs text-white/70">
               Announcements, activities, and alerts from the barangay.
             </Text>
           </View>
         </SafeAreaView>
-      </LinearGradient>
+      </View>
 
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
         <ScrollView
@@ -49,10 +50,14 @@ export default function Feed() {
               <Pressable
                 key={t.id}
                 onPress={() => setActiveTab(t.id)}
-                className={`rounded-full px-3 py-1.5 ${active ? 'bg-[#0A1628]' : 'bg-white border border-slate-200'}`}
+                className={`rounded-full px-3.5 py-1.5 ${
+                  active ? 'bg-slate-900' : 'border border-slate-200 bg-white'
+                }`}
               >
                 <Text
-                  className={`text-[12px] font-semibold ${active ? 'text-white' : 'text-slate-600'}`}
+                  className={`text-[12px] font-semibold ${
+                    active ? 'text-white' : 'text-slate-600'
+                  }`}
                 >
                   {t.label}
                 </Text>

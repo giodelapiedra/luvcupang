@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -32,28 +32,29 @@ export default function Home() {
     [activeTab]
   );
 
-  if (!user) return null; // AuthGuard handles the redirect.
+  if (!user) return null;
 
   return (
-    <View className="flex-1 bg-[#F8FAFF]">
+    <View className="flex-1 bg-[#F8FAFC]">
       <StatusBar style="light" />
 
-      <LinearGradient colors={['#0A1628', '#1A3C8F']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+      {/* Flat solid brand-blue header */}
+      <View style={{ backgroundColor: COLORS.BRAND }}>
         <SafeAreaView edges={['top']}>
-          <View className="flex-row items-center justify-between px-4 pb-4 pt-3">
-            <View className="flex-row items-center gap-3">
+          <View className="flex-row items-center justify-between px-4 pb-5 pt-3">
+            <View className="flex-1 flex-row items-center gap-3">
               <View
-                className="h-10 w-10 items-center justify-center rounded-2xl border border-white/30"
-                style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
+                className="h-10 w-10 items-center justify-center rounded-xl border border-white/20"
+                style={{ backgroundColor: 'rgba(255,255,255,0.12)' }}
               >
                 <Text className="font-display text-sm font-extrabold text-white">LC</Text>
               </View>
-              <View>
-                <Text className="font-display text-[15px] font-extrabold text-white">
-                  Cupang Love Connect
+              <View className="flex-1">
+                <Text className="text-[11px] uppercase tracking-wider text-white/60">
+                  Good {greetingWord}
                 </Text>
-                <Text className="text-[12px] text-white/70">
-                  Good {greetingWord}, {user.firstName}! 👋
+                <Text className="font-display text-base font-extrabold text-white" numberOfLines={1}>
+                  {user.firstName} {user.lastName}
                 </Text>
               </View>
             </View>
@@ -67,17 +68,26 @@ export default function Home() {
             </Pressable>
           </View>
         </SafeAreaView>
-      </LinearGradient>
+      </View>
 
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-        <View className="px-4 pt-4">
+        {/* ID banner — pulled up over header edge */}
+        <View className="px-4" style={{ marginTop: -8 }}>
           <IDBanner verified={user.verified} fullName={user.name} />
         </View>
 
+        {/* Services */}
         <View className="px-4 pt-6">
-          <View className="mb-3 flex-row items-end justify-between">
-            <Text className="font-display text-lg font-extrabold text-slate-900">Services</Text>
-            <Text className="text-[11px] text-slate-500">Tap to explore</Text>
+          <View className="mb-3 flex-row items-center justify-between">
+            <Text className="font-display text-base font-extrabold text-slate-900">Services</Text>
+            <Pressable
+              onPress={() => router.push('/(tabs)/services')}
+              className="flex-row items-center gap-1"
+              accessibilityRole="button"
+            >
+              <Text className="text-[12px] font-semibold text-[#2563EB]">See all</Text>
+              <Ionicons name="chevron-forward" size={12} color="#2563EB" />
+            </Pressable>
           </View>
           <View className="flex-row flex-wrap justify-between gap-y-3">
             {SERVICES.map((s) => (
@@ -95,10 +105,20 @@ export default function Home() {
           </View>
         </View>
 
-        <View className="px-4 pt-6">
-          <View className="mb-2 flex-row items-end justify-between">
-            <Text className="font-display text-lg font-extrabold text-slate-900">Cupang Feed</Text>
-            <Text className="text-[11px] text-slate-500">Stay informed</Text>
+        {/* Feed */}
+        <View className="px-4 pt-7">
+          <View className="mb-2 flex-row items-center justify-between">
+            <Text className="font-display text-base font-extrabold text-slate-900">
+              Cupang Feed
+            </Text>
+            <Pressable
+              onPress={() => router.push('/(tabs)/feed')}
+              accessibilityRole="button"
+              className="flex-row items-center gap-1"
+            >
+              <Text className="text-[12px] font-semibold text-[#2563EB]">View all</Text>
+              <Ionicons name="chevron-forward" size={12} color="#2563EB" />
+            </Pressable>
           </View>
 
           <ScrollView
@@ -113,9 +133,15 @@ export default function Home() {
                 <Pressable
                   key={t.id}
                   onPress={() => setActiveTab(t.id)}
-                  className={`rounded-full px-3 py-1.5 ${active ? 'bg-[#0A1628]' : 'bg-white border border-slate-200'}`}
+                  className={`rounded-full px-3.5 py-1.5 ${
+                    active ? 'bg-slate-900' : 'border border-slate-200 bg-white'
+                  }`}
                 >
-                  <Text className={`text-[12px] font-semibold ${active ? 'text-white' : 'text-slate-600'}`}>
+                  <Text
+                    className={`text-[12px] font-semibold ${
+                      active ? 'text-white' : 'text-slate-600'
+                    }`}
+                  >
                     {t.label}
                   </Text>
                 </Pressable>
