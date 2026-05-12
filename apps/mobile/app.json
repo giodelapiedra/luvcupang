@@ -21,9 +21,7 @@
         "backgroundColor": "#1A3C8F"
       }
     },
-    "web": {
-      "bundler": "metro"
-    },
+    "platforms": ["ios", "android"],
     "plugins": ["expo-router", "expo-secure-store"],
     "experiments": {
       "typedRoutes": true
