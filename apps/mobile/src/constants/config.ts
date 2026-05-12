@@ -1,8 +1,5 @@
 import Constants from 'expo-constants';
 
-// On a physical device, localhost points at the phone itself — use the host
-// machine's LAN IP via Expo's `hostUri`. iOS simulator + Android emulator
-// both also work with the LAN IP, so we prefer it across the board.
 function resolveDevApiBase(): string {
   const hostUri = Constants.expoConfig?.hostUri;
   if (hostUri) {
@@ -12,8 +9,24 @@ function resolveDevApiBase(): string {
   return 'http://localhost:3000';
 }
 
-export const API_BASE_URL =
-  process.env.EXPO_PUBLIC_API_BASE_URL ?? resolveDevApiBase();
+export const APP_NAME = 'Cupang Love Connect';
+export const APP_TAGLINE = 'Your Modern Service Provider';
+export const APP_FOOTER = 'The First Digital Barangay in Muntinlupa';
+export const BARANGAY = 'Brgy. Cupang, Muntinlupa City';
 
+export const API_BASE_URL = process.env.EXPO_PUBLIC_API_BASE_URL ?? resolveDevApiBase();
 export const API_VERSION = 'v1';
 export const API_PREFIX = `/api/${API_VERSION}`;
+
+export const PUROK_OPTIONS = [
+  'Purok 1',
+  'Purok 2',
+  'Purok 3',
+  'Purok 4',
+  'Purok 5',
+  'Purok 6',
+  'Purok 7',
+  'Purok 8',
+];
+
+export const GENDER_OPTIONS = ['Male', 'Female', 'Prefer not to say'];

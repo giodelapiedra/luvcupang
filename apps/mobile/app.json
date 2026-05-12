@@ -3,30 +3,27 @@
     "name": "Cupang Love Connect",
     "slug": "cupang-love-connect",
     "scheme": "clc",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#FFFFFF"
+      "backgroundColor": "#0A1628",
+      "resizeMode": "contain"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "ph.gov.muntinlupa.cupang"
     },
     "android": {
       "package": "ph.gov.muntinlupa.cupang",
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE"],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#1A3C8F"
       }
     },
     "web": {
-      "bundler": "metro",
-      "favicon": "./assets/images/logo.png"
+      "bundler": "metro"
     },
     "plugins": ["expo-router", "expo-secure-store"],
     "experiments": {

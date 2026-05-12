@@ -4,9 +4,20 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['PlusJakartaSans_400Regular'],
+        medium: ['PlusJakartaSans_500Medium'],
+        semibold: ['PlusJakartaSans_600SemiBold'],
+        bold: ['PlusJakartaSans_700Bold'],
+        extrabold: ['PlusJakartaSans_800ExtraBold'],
+        display: ['Syne_700Bold'],
+        'display-extra': ['Syne_800ExtraBold'],
+      },
       colors: {
-        'brand-blue': '#1A3C8F',
-        'accent-blue': '#2563EB',
+        navy: '#0A1628',
+        brand: '#1A3C8F',
+        accent: '#2563EB',
+        sky: '#DBEAFE',
       },
     },
   },

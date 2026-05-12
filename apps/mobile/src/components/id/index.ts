@@ -1,0 +1,1 @@
+export { ResidentIDCard } from './ResidentIDCard';

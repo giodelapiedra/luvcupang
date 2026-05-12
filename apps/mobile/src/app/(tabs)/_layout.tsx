@@ -6,9 +6,10 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: COLORS.BRAND_BLUE,
-        tabBarInactiveTintColor: COLORS.GRAY,
-        tabBarStyle: { borderTopWidth: 0.5, elevation: 0 },
+        tabBarActiveTintColor: COLORS.BRAND,
+        tabBarInactiveTintColor: COLORS.GRAY_400,
+        tabBarStyle: { borderTopWidth: 0.5, borderTopColor: COLORS.GRAY_200, elevation: 0, height: 60, paddingBottom: 6 },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
         headerShown: false,
       }}
     >
@@ -16,28 +17,28 @@ export default function TabLayout() {
         name="home"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <Ionicons name="home-outline" size={24} color={color} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="home-outline" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="services"
         options={{
           title: 'Services',
-          tabBarIcon: ({ color }) => <Ionicons name="grid-outline" size={24} color={color} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="grid-outline" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="feed"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ color }) => <Ionicons name="newspaper-outline" size={24} color={color} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="newspaper-outline" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="account"
         options={{
           title: 'Account',
-          tabBarIcon: ({ color }) => <Ionicons name="person-outline" size={24} color={color} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="person-outline" size={size} color={color} />,
         }}
       />
     </Tabs>
